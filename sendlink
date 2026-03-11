@@ -1,8 +1,2 @@
-[33mTo request a particular subdomain, you first need to generate a key. Use the command
-ssh-keygen to generate your key. For more information about generating and using
-ssh keys, see https://www.ssh.com/academy/ssh/keygen. Once you've generated a key,
-try again, and these instructions will be replaced with instructions on how to
-register your key with serveo.
-[0m
-[32mForwarding HTTP traffic from https://b2d140746ed75a46-106-195-32-61.serveousercontent.com
+[32mForwarding HTTP traffic from https://07f61d5357462712-106-195-46-49.serveousercontent.com
 [0m
