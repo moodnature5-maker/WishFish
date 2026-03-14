@@ -1,7 +1,7 @@
  <?php
 
-$botToken = "8194695937:AAHXwebWoX00SagH6LQDVkjz5P89ajvpmKE";
-$chatId = "8504837303";
+$botToken = "BOT_TOKEN";
+$chatId = "CHAT_ID";
 
 $date = date('dMYHis');
 
